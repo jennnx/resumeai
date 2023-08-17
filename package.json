@@ -32,6 +32,7 @@
 	"type": "module",
 	"dependencies": {
 		"@neondatabase/serverless": "^0.5.6",
-		"@picocss/pico": "^1.5.10"
+		"@picocss/pico": "^1.5.10",
+		"pdf.js-extract": "^0.2.1"
 	}
 }
