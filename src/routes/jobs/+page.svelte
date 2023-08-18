@@ -21,7 +21,7 @@
 				<td>{job?.id}</td>
 				<td>{job?.title}</td>
 				<td>{job?.location}</td>
-				<td>4</td>
+				<td>{job?.applicationcount}</td>
 			</tr>
 		{/each}
 	</tbody>

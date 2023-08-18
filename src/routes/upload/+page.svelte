@@ -4,10 +4,21 @@
 
 	export let data: PageData;
 	export let form: ActionData;
+
+	let submitting: boolean = false;
 </script>
 
 <h1>Process a new resume</h1>
-<form method="POST" use:enhance>
+<form
+	method="POST"
+	use:enhance={() => {
+		submitting = true;
+
+		return async ({ result }) => {
+			submitting = false;
+		};
+	}}
+>
 	<!-- Grid -->
 	<label for="name">
 		Applicant Name
@@ -31,10 +42,11 @@
 	</label>
 
 	<!-- Button -->
-	<button type="submit">Submit</button>
+	<button type="submit" aria-busy={submitting}>{submitting ? 'Processing...' : 'Submit'}</button>
 </form>
 {#if form?.message}
 	<small class="error">{form.message}</small>
+	{console.log(form)}
 {/if}
 
 <style>

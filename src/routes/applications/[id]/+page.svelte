@@ -4,4 +4,4 @@
 	export let data: PageData;
 </script>
 
-<iframe src={data.pdf} height="100%" width="100%" />
+{JSON.stringify(data.application)}

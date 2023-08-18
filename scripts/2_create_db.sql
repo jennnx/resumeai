@@ -4,6 +4,8 @@ CREATE TABLE applications (
     id SERIAL PRIMARY KEY,
     jobId INTEGER REFERENCES jobs(id),
     name VARCHAR(255),
-    score INTEGER CHECK (score >= 0 AND score <= 100) DEFAULT NULL,
+    score INTEGER CHECK (score >= 1 AND score <= 5) DEFAULT NULL,
+    resume TEXT,
+    evaluation JSONB,
     status application_status DEFAULT 'pending'
 );

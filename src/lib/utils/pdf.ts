@@ -1,18 +1,19 @@
 import { PDFExtract } from 'pdf.js-extract';
-import type { Job } from '$lib/types';
 
-export const process = async (jobId: number, resumeBuffer: Buffer) => {
+export const extractText = async (resumeBuffer: Buffer) => {
 	const parser = new PDFExtract();
 	const data = await parser.extractBuffer(resumeBuffer, {});
 
 	let text = '';
 	for (const page of data.pages) {
+		// @ts-expect-error The utils method is not documented in .d.ts
 		const lines = PDFExtract.utils.pageToLines(page, 2);
-		const rows = PDFExtract.utils.extractTextRows(lines);
+		// @ts-expect-error The utils method is not documented in .d.ts
+		const rows = PDFExtract.utils.extractTextRows(lines) as string[][];
 		text += `(Page ${page.pageInfo.num})\n`;
 		text += rows.map((row) => row.join('')).join('\n');
 		text += '\n\n';
 	}
-	console.dir(text, { depth: null });
-	return null;
+
+	return text;
 };

@@ -35,17 +35,21 @@
 			</div>
 			<div class="grid">
 				<div>
-					<strong>Qualifications</strong>
-					<p>{job.qualifications}</p>
+					<strong>Qualifications (Required)</strong>
+					<p>{job.requiredqualifications}</p>
 				</div>
 				<div>
-					<strong>Responsibilities</strong>
-					<p>{job.responsibilities}</p>
+					<strong>Qualifications (Preferred)</strong>
+					<p>{job.optionalqualifications}</p>
 				</div>
 			</div>
 			<div>
+				<strong>Responsibilities</strong>
+				<p>{job.responsibilities}</p>
+			</div>
+			<div>
 				<strong>Additional Notes</strong>
-				<p>{job.additionalNotes ?? 'None'}</p>
+				<p>{job.additionalnotes ?? 'None'}</p>
 			</div>
 		</div>
 	</details>

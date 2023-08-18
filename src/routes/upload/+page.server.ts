@@ -2,7 +2,8 @@ import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
 import type { Job } from '$lib/types';
 import { fail } from '@sveltejs/kit';
-import { process } from '$lib/server/llm/process';
+import { extractText } from '$lib/utils/pdf';
+import { evaluate } from '$lib/server/llm/openai';
 
 export const load: PageServerLoad = async () => {
 	const jobs = (await db(`SELECT id, title, location FROM jobs ORDER BY title ASC;`)) as Job[];
@@ -19,25 +20,26 @@ export const actions: Actions = {
 		const job = Number(formData.get('job')) as number;
 		const resume = formData.get('resume') as File;
 		const resumeBuffer = Buffer.from(await resume.arrayBuffer());
+		const pdfText = await extractText(resumeBuffer);
 
-		process(job, resumeBuffer);
+		const evaluation = await evaluate(job, pdfText);
+		const score = evaluation.finalScore;
 
-		// // Insert into DB
-		// try {
-		// 	await db(`INSERT INTO applications (jobId, name, resume) VALUES ($1, $2, $3);`, [
-		// 		job,
-		// 		name,
-		// 		resumeBuffer
-		// 	]);
-		// } catch (e) {
-		// 	console.error(e);
-		// 	return fail(400, {
-		// 		message: 'Sorry, something went wrong. Please try again.',
-		// 		name,
-		// 		job,
-		// 		resume
-		// 	});
-		// }
+		// Insert into DB
+		try {
+			await db(
+				`INSERT INTO applications (jobId, name, resume, score, evaluation) VALUES ($1, $2, $3, $4, $5);`,
+				[job, name, pdfText, score, evaluation]
+			);
+		} catch (e) {
+			console.error('Error while inserting application into DB:');
+			console.error(e);
+			return fail(500, {
+				message: 'Sorry, something went wrong. Please try again.',
+				name,
+				job
+			});
+		}
 
 		return {
 			success: true

@@ -1,18 +1,15 @@
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
-
-export type Job = {
-	id: number;
-	title: string;
-	location: string;
-	description: string;
-	qualifications: string;
-	responsibilities: string;
-	additionalNotes?: string;
-};
+import type { Job } from '$lib/types';
 
 export const load: PageServerLoad = async () => {
-	const jobs = (await db(`SELECT * FROM jobs;`)) as Job[];
+	// Select all jobs, as well as the # of applications on each job.
+	const jobs = (await db(`
+	SELECT j.*, COUNT(a.id) AS applicationcount
+	FROM jobs j
+	LEFT JOIN applications a ON j.id = a.jobId
+	GROUP BY j.id;
+	`)) as (Job & { applicationcount: number })[];
 
 	return { jobs };
 };
