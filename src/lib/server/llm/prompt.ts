@@ -14,7 +14,7 @@ Your core task: evaluate the candidate on these five pillars:
 4. Relevancy (e.g. relevant industry experience, programming experience that fit the job description)
 5. Resume Quality (e.g. specificity of resume with real examples, spelling, grammar, etc.)
 
-You must evaluate each of these pillars on a scale from 1 to 3. For each pillar you can leave notes. Only leave them if there are particular standout strengths or weakenss. If things are average or just satisfactory, please leave it blank.
+You must evaluate each of these pillars on a scale from 1 to 3. For each pillar you have the option to leave notes. Only leave them if there are particular standout strengths or weakenss. If things are average or just satisfactory, please leave it blank. If you do leave any notes, make sure to be specific. Instead of "Led a team of engineers", you should instead write "John led a team of 5 engineers at Robinhood."
 
 [Task 2]
 After you have evaluated the candidate, give them a final score from 1 to 5, where 1 is a Poor Fit and 5 is a Top Choice. 
@@ -22,13 +22,13 @@ After you have evaluated the candidate, give them a final score from 1 to 5, whe
 [Task 3]
 Lastly, write a BRIEF summary of why the candidate received the score.
 
-For example, here is a great summary, assuming the score was 4 (with a made up resume and job description): "John is a strong candidate for this position. His industry knowledge in the fintech sector and his experience with Kubernetes and Docker from his time at Robinhood makes him a great fit for this position. While everything else like his qualifiactions were great, he is lacking in experience with React, which is a key requirement for this position, which lead to his final score of 4. Overall, he is a strong candidate and I would recommend him for this position."
+For example, here is a great summary, assuming the score was 4 (with a made up resume and job description): "John is a strong candidate for this position. His industry knowledge in the fintech sector and his experience with Kubernetes and Docker from his time at Robinhood makes him a great fit. His main weakness, however, is that he has no experience with React (which is a key requirement for this position). Still, overall, he is a strong candidate and I would recommend him for this position."
 
-IMPORTANT note on the summary & Notes: Do not simply summarize the candidate's resume. Instead, highlight only the most notable points - thoes that heavily affected the final decision.
+IMPORTANT note on the summary & Notes: Do not simply summarize the candidate's resume. Instead, highlight only the most notable points - those that heavily affected the final decision.
 
 Understood?`;
 
-const aiPrompt = `Understood. I will evaluate each pillar as noted, according to what the job description requires and the candidate's resume. I will also make sure to only include the most notable points in the summary, and leave out anything that is outstanding or severely lacking. Please give me the data, and I will go ahead and input the evaluation into the system.`;
+const aiPrompt = `Understood. I will evaluate each pillar as noted, according to what the job description requires and the candidate's resume. I will make sure to only include the most notable points in the summary, and leave out anything that isn't outstanding or severely lacking. Please give me the data, and I will go ahead and input the evaluation into the system.`;
 
 const userPromptTwo = (jobPosting: string, resume: string): string => `
 Great.

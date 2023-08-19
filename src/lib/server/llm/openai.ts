@@ -13,7 +13,7 @@ const config: OpenAI.Chat.CompletionCreateParamsNonStreaming = {
 	model: 'gpt-4-0613', // Use the variant with function calling,
 	functions: [responseFormat],
 	function_call: { name: responseFunctionName },
-	temperature: 0.2
+	temperature: 0.1
 };
 
 export const evaluate = async (jobId: number, resume: string) => {

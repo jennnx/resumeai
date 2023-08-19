@@ -5,6 +5,7 @@ export type Application = {
 	name: string;
 	score?: number;
 	status: 'pending' | 'accepted' | 'rejected';
+	evaluation?: Evaluation;
 };
 
 // all lower-case fields for SQL compatibility
@@ -16,11 +17,10 @@ export type Job = {
 	requiredqualifications: string;
 	optionalqualifications?: string;
 	responsibilities: string;
-	additionalnotes?: string;
 };
 
 type EvaluationDetail = {
-	category: 'qualifications' | 'experience' | 'skills' | 'relevance' | 'resume quality';
+	category: 'qualifications' | 'experience' | 'skills' | 'resume quality';
 	score: number; // Should be in the range 1-3
 	notableAccomplishments: string[];
 	notableShortcomings: string[];

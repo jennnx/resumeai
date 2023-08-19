@@ -24,13 +24,14 @@ export const actions: Actions = {
 
 		const evaluation = await evaluate(job, pdfText);
 		const score = evaluation.finalScore;
-
+		let id: number;
 		// Insert into DB
 		try {
-			await db(
-				`INSERT INTO applications (jobId, name, resume, score, evaluation) VALUES ($1, $2, $3, $4, $5);`,
+			const result = await db(
+				`INSERT INTO applications (jobId, name, resume, score, evaluation) VALUES ($1, $2, $3, $4, $5) RETURNING id;`,
 				[job, name, pdfText, score, evaluation]
 			);
+			id = result[0]?.id;
 		} catch (e) {
 			console.error('Error while inserting application into DB:');
 			console.error(e);
@@ -40,11 +41,9 @@ export const actions: Actions = {
 				job
 			});
 		}
-
 		return {
-			success: true
+			success: true,
+			applicationId: id
 		};
 	}
 };
-
-export const ssr = false;

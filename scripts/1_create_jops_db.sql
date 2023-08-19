@@ -6,5 +6,4 @@ CREATE TABLE IF NOT EXISTS jobs (
     requiredQualifications TEXT,
     optionalQualifications TEXT,
     responsibilities TEXT,
-    additionalNotes TEXT
 );

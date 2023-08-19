@@ -1,5 +1,4 @@
 import { db } from '$lib/server/db';
-import { error, json } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import type { Application } from '$lib/types';
 
@@ -14,4 +13,21 @@ export const load: PageServerLoad = async ({ params }) => {
 	)) as (Application & { title: string; location: string })[];
 
 	return { application: application[0] };
+};
+
+import type { Actions } from './$types';
+
+export const actions: Actions = {
+	accept: async ({ params }) => {
+		const id = params.id;
+		await db(`UPDATE applications SET status = 'accepted' WHERE id = $1;`, [id]);
+
+		return { success: true };
+	},
+	reject: async ({ params }) => {
+		const id = params.id;
+		await db(`UPDATE applications SET status = 'rejected' WHERE id = $1;`, [id]);
+
+		return { success: true };
+	}
 };

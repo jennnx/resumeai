@@ -44,14 +44,6 @@
 			required
 		/>
 	</label>
-	<label for="additionalNotes">
-		<span>Additional Notes</span>
-		<textarea
-			id="additionalNotes"
-			name="additionalNotes"
-			placeholder="Any additional context to pass to the AI (Optional)"
-		/>
-	</label>
 
 	<button>Submit</button>
 </form>

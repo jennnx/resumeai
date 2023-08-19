@@ -52,8 +52,9 @@
 	}
 
 	.app {
-		--primary: rgba(149, 30, 217, 0.987);
-		--primary-hover: rgba(155, 59, 211, 0.987);
+		--primary: rgba(149, 30, 217, 1);
+		--primary-light: rgb(160, 75, 209);
+		--primary-hover: rgba(155, 59, 211, 1);
 		--primary-focus: rgba(216, 27, 96, 0.125);
 		--primary-inverse: #fff;
 		--danger: #e22424;

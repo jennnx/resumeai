@@ -12,13 +12,10 @@
 			<h1 class="job-title">{job.title}</h1>
 			<p><em>{job.location}</em></p>
 		</div>
-		<div class="button-row">
-			<button class="outline">Edit</button>
-			<button class="danger outline">Delete</button>
-		</div>
 	</div>
 	<details class="accordion">
 		<summary
+			class="toggle-button"
 			aria-expanded={showDetails}
 			on:click={() => (showDetails = !showDetails)}
 			on:keydown={(e) => {
@@ -47,10 +44,6 @@
 				<strong>Responsibilities</strong>
 				<p>{job.responsibilities}</p>
 			</div>
-			<div>
-				<strong>Additional Notes</strong>
-				<p>{job.additionalnotes ?? 'None'}</p>
-			</div>
 		</div>
 	</details>
 </article>
@@ -65,17 +58,6 @@
 
 	.job-title {
 		margin-bottom: 0;
-	}
-
-	.button-row {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		gap: 1rem;
-
-		& > button {
-			padding: 0.5rem 1rem;
-		}
 	}
 
 	.danger {
@@ -98,7 +80,7 @@
 		padding-bottom: 0;
 	}
 
-	summary {
+	.toggle-button {
 		display: inline-block;
 		position: relative;
 		text-align: center;
@@ -114,7 +96,7 @@
 		}
 
 		&:hover {
-			background-color: #f0f0f0;
+			background-color: var(--secondary);
 		}
 	}
 

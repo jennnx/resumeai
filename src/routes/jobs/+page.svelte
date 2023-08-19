@@ -5,7 +5,12 @@
 	export let data: PageData;
 </script>
 
-<h1>All Job Postings</h1>
+<div class="header-row">
+	<h1>All Job Postings</h1>
+	<div>
+		<a href="/jobs/new" role="button" class="outline">New Job</a>
+	</div>
+</div>
 <table>
 	<thead>
 		<tr>
@@ -38,12 +43,18 @@
 		padding: 1rem;
 
 		&:hover {
-			background-color: #f5f5f5;
+			background-color: var(--secondary-hover);
 		}
 	}
 
 	td {
 		padding-top: 1.5rem;
 		padding-bottom: 1.5rem;
+	}
+	.header-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 2rem;
 	}
 </style>
