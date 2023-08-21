@@ -7,7 +7,6 @@ export const format = (job: Job): string => {
 	ret += `Responsibilities: ${job.responsibilities}\n`;
 	ret += `Required Qualifications: ${job.requiredqualifications}\n`;
 	ret += `Optional Qualifications: ${job.optionalqualifications}\n`;
-	ret += `Additional Notes: ${job.additionalnotes}\n`;
 
 	return ret;
 };

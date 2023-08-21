@@ -10,7 +10,7 @@ import { error } from '@sveltejs/kit';
 const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 const config: OpenAI.Chat.CompletionCreateParamsNonStreaming = {
 	messages: [],
-	model: 'gpt-4-0613', // Use the variant with function calling,
+	model: 'gpt-4-0613', // Use the variant with function calling. SIGNIFICANTLY better results with GPT4.
 	functions: [responseFormat],
 	function_call: { name: responseFunctionName },
 	temperature: 0.1
@@ -35,6 +35,7 @@ export const evaluate = async (jobId: number, resume: string) => {
 	}
 	const evlauationJSON = JSON.parse(evaluation);
 
+	// Ensure this JSOn is parseable and has the correct shape.
 	if (!isValidEvaluation(evlauationJSON)) {
 		console.error(`OpenAI's evaluation was not in a valid shape. Instead, got: `);
 		console.error(evlauationJSON);

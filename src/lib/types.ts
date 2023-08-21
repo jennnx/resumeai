@@ -32,7 +32,7 @@ export type Evaluation = {
 	summary: string; // Should be a brief summary (max 4 sentences, max length 512)
 };
 
-// Utility type checker
+// Checks to see if the evaluation is in the same type as the Evaluation type we see above.
 export function isValidEvaluation(evaluation: unknown): evaluation is Evaluation {
 	if (typeof evaluation !== 'object' || evaluation == null) {
 		return false;

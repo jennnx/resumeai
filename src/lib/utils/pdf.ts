@@ -1,5 +1,6 @@
 import { PDFExtract } from 'pdf.js-extract';
 
+// Utility function to extract text from a PDF file as a single string.
 export const extractText = async (resumeBuffer: Buffer) => {
 	const parser = new PDFExtract();
 	const data = await parser.extractBuffer(resumeBuffer, {});

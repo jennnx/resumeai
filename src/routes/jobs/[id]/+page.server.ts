@@ -10,6 +10,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	// ...and make sure it exists.
 	if (!job || job.length === 0) throw error(404, 'Job posting not found.');
 
+	// Then, select all applications for this job.
 	const applications = (await db(
 		'SELECT id, name, score, status FROM applications WHERE jobId = $1;',
 		[params.id]
