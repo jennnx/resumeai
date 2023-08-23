@@ -19,32 +19,52 @@
 	</thead>
 	<tbody>
 		{#each data.applications as applicant}
-			<tr class="data-row" on:click={() => goto(`/applications/${applicant.id}`)}>
+			<tr class="entry" on:click={() => goto(`/applications/${applicant.id}`)}>
 				<td>{applicant.name}</td>
 				<td>{applicant.status?.toUpperCase()}</td>
-				<td class="score">{applicant.score ?? '-'}</td>
+				<td>{applicant.score ?? '-'}</td>
 			</tr>
 		{/each}
 	</tbody>
 </table>
 
-<style lang="scss">
-	.data-row:hover {
-		cursor: pointer;
+<style>
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		border-spacing: 0;
+		text-align: left;
+		margin-top: var(--spacing-2xl);
+	}
+
+	thead {
 		background-color: var(--secondary-hover);
 	}
 
-	td {
-		padding-top: 1.5rem;
-		padding-bottom: 1.5rem;
+	th {
+		padding: var(--spacing-lg);
+		font-weight: bold;
 	}
 
-	.score {
-		::after {
-			content: '→';
-			position: absolute;
-			display: inline-block;
-			right: 0;
-		}
+	tr {
+		padding: var(--spacing-lg);
+	}
+
+	tr:nth-child(even) {
+		background-color: #f9f9f9; /* Light background for alternating rows */
+	}
+
+	.entry {
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+	.entry:hover {
+		background-color: var(--contrast);
+	}
+
+	td {
+		padding: var(--spacing-lg);
+		border-bottom: 1px solid #e0e0e0; /* Subtle lines between rows */
 	}
 </style>

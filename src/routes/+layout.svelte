@@ -1,63 +1,37 @@
-<script lang="ts">
-	import '../app.scss';
-	import '@picocss/pico';
+<script>
+	import '../globals.css';
+
+	import Navbar from '$lib/components/Navbar.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<!-- Navbar Component -->
-<div class="app">
-	<header class="container">
-		<nav>
-			<div class="logo"><a class="title" href="/">ResumeAI</a></div>
-			<ul>
-				<li><a class="navLink" href="/upload">Upload</a></li>
-				<li><a class="navLink" href="/jobs">Jobs</a></li>
-			</ul>
-		</nav>
+<div class="container">
+	<header class="navbar">
+		<Navbar />
 	</header>
-	<!-- Main Body -->
-	<div class="container">
-		<main>
-			<slot />
-		</main>
-	</div>
+	<main>
+		<slot />
+	</main>
+	<footer>
+		<Footer />
+	</footer>
 </div>
 
 <style>
-	.logo {
+	.container {
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 20px;
 		display: flex;
-		align-items: center;
+		flex-direction: column;
+		min-height: 100vh;
 	}
 
-	.title {
-		margin: 0;
-		font-size: 1.5rem;
-		font-weight: 700;
-		background: linear-gradient(
-			132deg,
-			rgba(2, 0, 36, 1) 0%,
-			rgba(68, 0, 255, 1) 0%,
-			rgba(172, 26, 255, 0.9) 98%
-		);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+	main {
+		flex-grow: 1;
 	}
 
-	.navLink {
-		color: var(--secondary);
-
-		&:hover {
-			color: var(--primary);
-		}
-	}
-
-	.app {
-		--primary: rgba(149, 30, 217, 1);
-		--primary-light: rgb(160, 75, 209);
-		--primary-hover: rgba(155, 59, 211, 1);
-		--primary-focus: rgba(216, 27, 96, 0.125);
-		--primary-inverse: #fff;
-		--danger: #e22424;
-		--danger-hover: #ff3e3e;
+	.navbar {
+		margin-bottom: var(--spacing-2xl);
 	}
 </style>

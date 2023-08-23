@@ -1,0 +1,44 @@
+/* Define any global styles for the app */
+html {
+	font-family: 'Inter', sans-serif;
+	--primary: hsl(263, 70%, 50%);
+	--primary-hover: hsl(263, 70%, 60%);
+	--primary-gradient-end: hsl(263, 30%, 85%);
+	--secondary: hsl(94, 79%, 47%);
+	--secondary-hover: hsl(94, 79%, 57%);
+	--danger: #e22424;
+	--danger-hover: #ff3e3e;
+	--contrast: hsl(0, 0%, 90%);
+
+	--text-light: hsl(0, 0%, 35%);
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+
+	/* Define text sizes */
+	--text-xs: 0.5rem;
+	--text-sm: 0.75rem;
+	--text-md: 1rem;
+	--text-lg: 1.25rem;
+	--text-xl: 2rem;
+
+	/* Define spacing */
+	--spacing-sm: 0.5rem;
+	--spacing: 1rem;
+	--spacing-lg: 1.5rem;
+	--spacing-xl: 2rem;
+	--spacing-2xl: 3rem;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: underline;
+}

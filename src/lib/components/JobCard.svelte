@@ -6,7 +6,7 @@
 	let showDetails = false;
 </script>
 
-<article>
+<div class="card">
 	<div class="title-container">
 		<div>
 			<h1 class="job-title">{job.title}</h1>
@@ -46,10 +46,17 @@
 			</div>
 		</div>
 	</details>
-</article>
+</div>
 
 <!-- svelte-ignore css-unused-selector -->
-<style lang="scss">
+<style>
+	.card {
+		padding: var(--spacing-lg);
+		background-color: var(--contrast);
+		margin-bottom: var(--spacing);
+		border-radius: 8px;
+	}
+
 	.title-container {
 		display: flex;
 		flex-direction: row;
@@ -70,10 +77,6 @@
 		}
 	}
 
-	article {
-		padding-bottom: 4px;
-	}
-
 	.accordion {
 		text-align: end;
 		border-bottom: none;
@@ -86,18 +89,13 @@
 		text-align: center;
 		padding: 0.75rem;
 		border-radius: 8px;
+		border: 1px solid var(--primary);
+	}
 
-		::after {
-			position: absolute;
-			display: inline-block;
-			right: 0;
-			top: 50%;
-			transform: translateY(-50%);
-		}
-
-		&:hover {
-			background-color: var(--secondary);
-		}
+	.toggle-button:hover {
+		cursor: pointer;
+		color: white;
+		background-color: var(--primary);
 	}
 
 	.details-content {

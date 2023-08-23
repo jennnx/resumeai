@@ -54,16 +54,17 @@
 			</label>
 
 			<!-- Select -->
-			<label for="job">Job Posting</label>
-			<select id="job" name="job" required>
-				<option value="" disabled selected={!form?.job}>Select a job posting</option>
-				{#each data.jobs as job}
-					<option value={job.id} selected={form?.job === job.id}
-						>{`[${job.id}] ${job.title} (${job.location})`}</option
-					>
-				{/each}
-			</select>
-
+			<label for="job"
+				>Job Posting
+				<select id="job" name="job" required>
+					<option value="" disabled selected={!form?.job}>Select a job posting</option>
+					{#each data.jobs as job}
+						<option value={job.id} selected={form?.job === job.id}
+							>{`[${job.id}] ${job.title} (${job.location})`}</option
+						>
+					{/each}
+				</select>
+			</label>
 			<label for="resume">
 				Resume <small>(Accepted formats: .pdf)</small>
 				<input type="file" id="resume" name="resume" accept=".pdf" />
@@ -72,7 +73,7 @@
 	{/if}
 	<!-- Hide button when successfully processed app -->
 	{#if !form?.success}
-		<button class:submitting class="submit-button" type="submit" aria-busy={submitting}
+		<button class:submitting disabled={submitting} type="submit"
 			>{submitting ? 'Processing...' : 'Submit'}</button
 		>
 	{/if}
@@ -82,28 +83,13 @@
 	{console.log(form)}
 {/if}
 
-<style lang="scss">
-	.error {
-		color: #d65d5d;
-	}
-	small {
-		font-size: 0.75rem;
-	}
-	.hidden {
-		display: none;
-	}
+<style>
 	.loading-section {
 		text-align: center;
-
-		h2 {
-			font-size: 1.5rem;
-			margin-bottom: 0.5rem;
-		}
 	}
-	.submit-button {
-		transition: background-color 0.2s ease-in-out;
-		transition: width 1s ease-in-out;
-		margin: 0 auto;
+	.loading-section h2 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
 	}
 	@keyframes shimmer {
 		0% {
@@ -115,16 +101,16 @@
 	}
 	.submitting {
 		width: 50%;
-		/* Adjust the color to match your button's background color */
 		background: linear-gradient(
 			90deg,
 			var(--primary) 25%,
-			var(--primary-light) 50%,
+			var(--primary-hover) 50%,
 			var(--primary) 75%
 		);
 		background-size: 200% 100%;
 		animation: shimmer 3s infinite linear;
 		position: relative;
+		cursor: not-allowed;
 	}
 
 	.success-section {
@@ -133,10 +119,77 @@
 		align-items: center;
 		justify-content: center;
 		text-align: center;
+	}
 
-		h2 {
-			font-size: 1.5rem;
-			margin: 0.5rem 0;
-		}
+	.success-section h2 {
+		font-size: 1.5rem;
+		margin: 0.5rem 0;
+	}
+
+	/** Begin form styling*/
+	label {
+		display: block;
+		margin-bottom: var(--spacing-xl);
+	}
+
+	label > * {
+		display: block;
+		margin: var(--spacing-sm) 0;
+	}
+
+	input[type='text'],
+	select,
+	input[type='file'] {
+		width: 100%;
+		padding: var(--spacing-sm);
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+
+	input[type='file'] {
+		padding: var(--spacing-sm) var(--spacing-xs);
+	}
+
+	select {
+		-webkit-appearance: none;
+		appearance: none;
+		background: #fff;
+	}
+
+	input[type='text']:focus,
+	select:focus {
+		outline: 2px solid var(--primary);
+	}
+
+	button {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		background-color: var(--primary);
+		color: #fff;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: var(--text-md);
+		transition: background-color 0.2s ease-in-out;
+		transition: width 1s ease-in-out;
+		margin: 0 auto;
+	}
+
+	button:hover {
+		background-color: var(--primary-hover);
+	}
+
+	.error {
+		color: #d65d5d;
+	}
+
+	small {
+		font-size: 0.75rem;
+	}
+
+	.hidden {
+		display: none;
 	}
 </style>

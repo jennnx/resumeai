@@ -47,3 +47,64 @@
 
 	<button>Submit</button>
 </form>
+
+<style>
+	h1 {
+		color: #333;
+	}
+
+	form {
+		border-radius: 5px;
+		padding: var(--spacing-lg);
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		max-width: 720px;
+		margin: var(--spacing-2xl) auto;
+	}
+
+	label {
+		display: block;
+		margin-bottom: var(--spacing);
+	}
+
+	span {
+		display: block;
+		font-weight: bold;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	input[type='text'],
+	textarea {
+		width: 100%;
+		padding: var(--spacing-sm);
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+		resize: vertical;
+	}
+
+	textarea {
+		min-height: 100px;
+	}
+
+	input[type='text']:focus,
+	textarea:focus {
+		outline: 2px solid var(--primary);
+	}
+
+	button {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		background-color: var(--primary);
+		color: #fff;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 16px;
+		transition: background-color 0.3s ease;
+	}
+
+	button:hover {
+		background-color: var(--primary-hover);
+	}
+</style>

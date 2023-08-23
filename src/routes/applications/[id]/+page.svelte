@@ -28,8 +28,8 @@
 		<p>{data?.application?.location}</p>
 		{#if data?.application?.status === 'pending'}
 			<div class="button-row">
-				<form method="POST" action="?/accept"><button class="outline">Accept</button></form>
-				<form method="POST" action="?/reject"><button class="outline reject">Reject</button></form>
+				<form method="POST" action="?/accept"><button class="accept">Accept</button></form>
+				<form method="POST" action="?/reject"><button class="reject">Reject</button></form>
 			</div>
 		{:else}
 			<p>[Application {data?.application?.status}]</p>
@@ -49,16 +49,16 @@
 		{#each data.application.evaluation.details as detail}
 			<div class="detail">
 				<h4 class="category-name">{detail.category}</h4>
-				<p>{getDetailString(detail.score)}</p>
+				<p class="category-score">{getDetailString(detail.score)}</p>
 				<div class="grid">
-					<ul class="plus">
+					<ul>
 						{#each detail.notableAccomplishments as note}
 							<li>
 								<img class="icon" src={PlusIcon} width={24} height={24} alt="A plus icon" />{note}
 							</li>
 						{/each}
 					</ul>
-					<ul class="minus">
+					<ul>
 						{#each detail.notableShortcomings as note}
 							<li>
 								<img class="icon" src={MinusIcon} width={24} height={24} alt="A minus icon" />{note}
@@ -72,78 +72,139 @@
 	{/if}
 </div>
 
-<style lang="scss">
+<style>
 	.button-row {
 		display: flex;
 		gap: 0.5rem;
-		margin-top: 1rem;
-
-		button {
-			width: 100%;
-		}
-
-		.reject {
-			color: var(--danger);
-			border-color: var(--danger);
-
-			&:hover {
-				background-color: var(--danger);
-				color: white;
-			}
-		}
+		margin-top: var(--spacing);
 	}
+
+	button {
+		padding: 0.5rem 1rem;
+		text-decoration: none;
+		border-radius: 5px;
+		background-color: transparent;
+		width: 100%;
+		font-size: var(--text-lg);
+		outline: none;
+		cursor: pointer;
+	}
+
+	.accept {
+		color: var(--primary);
+		border: 1px solid var(--primary);
+	}
+
+	.accept:hover {
+		background-color: var(--primary);
+		color: white;
+	}
+
+	.reject {
+		color: var(--danger);
+		border: 1px solid var(--danger);
+	}
+
+	.reject:hover {
+		background-color: var(--danger);
+		color: white;
+	}
+
 	.header {
 		display: flex;
-		align-items: center;
 		justify-content: space-between;
 		margin-bottom: 2rem;
 	}
+
 	.jobinfo {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-end;
-
-		h3 {
-			margin: 0;
-		}
-
-		p {
-			margin: 0;
-		}
+		justify-content: center;
+		row-gap: var(--spacing-sm);
 	}
+
+	h1,
+	.jobinfo p,
+	.jobinfo h3 {
+		margin: 0;
+	}
+
 	.score {
 		text-align: center;
-		max-width: 50%;
-		margin: 3rem auto;
-		border: 1px solid #8f8f8f;
+		max-width: 75%;
+		margin: var(--spacing-2xl) auto;
+		border: 1px solid var(--primary);
 		border-radius: 15px;
-		padding: 2rem;
-		h3 {
-			margin: 0;
-		}
-		p {
-			font-size: 1.25rem;
-		}
+		padding: var(--spacing-2xl);
 	}
+
+	.score h3 {
+		font-size: var(--text-lg);
+	}
+
+	.score p {
+		font-size: var(--text-xl);
+		margin: var(--spacing-lg) 0;
+	}
+
+	progress {
+		width: 100%;
+		height: 10px;
+		border: none;
+		border-radius: 5px;
+		appearance: none;
+		background-color: #f0f0f0;
+	}
+
+	progress::-webkit-progress-bar {
+		background-color: #f0f0f0;
+		border-radius: 5px;
+	}
+
+	progress::-webkit-progress-value {
+		background-color: #3498db;
+		border-radius: 5px;
+	}
+
 	.summary {
-		margin-top: 2rem;
+		margin-top: var(--spacing-xl);
+		line-height: 1.5;
 	}
+
+	hr {
+		border: none;
+		border-top: 1px solid var(--contrast);
+		margin: var(--spacing-xl) 0;
+	}
+
 	.category-name {
 		text-transform: capitalize;
-		margin-top: 1rem;
-		margin-bottom: 0.1rem;
+		margin-bottom: var(--spacing-sm);
 	}
+
+	.category-score {
+		margin-top: 0;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-2xl);
+	}
+
 	ul {
 		padding-left: 0;
-		font-size: 0.9rem;
-
-		li {
-			position: relative;
-			list-style-type: none;
-			padding-left: 20px;
-			margin-bottom: 0.5rem;
-		}
 	}
+
+	ul li {
+		position: relative;
+		list-style-type: none;
+		padding-left: var(--spacing-lg);
+		margin-bottom: var(--spacing);
+		color: var(--text-light);
+	}
+
 	.icon {
 		position: absolute;
 		left: -0.5rem;
