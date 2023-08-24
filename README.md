@@ -1,5 +1,7 @@
 # create-svelte
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjennnx%2Fresumeai&env=OPENAI_API_KEY,DATABASE_URL&envDescription=API%20Key%20to%20call%20GPT-4%2C%20and%20a%20Postgres%20Connection%20string%20to%20Neon%20(pooled%20db))
+
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
 ## Creating a project
