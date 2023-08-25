@@ -4,8 +4,6 @@
 	import { goto } from '$app/navigation';
 
 	export let data: PageData;
-
-	let showDetails = false;
 </script>
 
 <JobCard job={data.job} />
